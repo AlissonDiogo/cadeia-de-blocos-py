@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  api-node-1:
+    build: .
+    container_name: blockchain-api-node-1
+    environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_DB=1
+    volumes:
+      - .:/blockchain
+    ports:
+      - 8001:8000
+
+  api-node-2:
+    build: .
+    container_name: blockchain-api-node-2
+    environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_DB=2
+    volumes:
+      - .:/blockchain
+    ports:
+      - 8002:8000
+
+  api-node-3:
+    build: .
+    container_name: blockchain-api-node-3
+    environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_DB=3
+    volumes:
+      - .:/blockchain
+    ports:
+      - 8003:8000
+
+  api-node-4:
+    build: .
+    container_name: blockchain-api-node-4
+    environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_DB=4
+    volumes:
+      - .:/blockchain
+    ports:
+      - 8004:8000
+  
+  redis:
+    image: redis:7.2-alpine
+    ports:
+      - 6379:6379
+    container_name: blockchain-redis
